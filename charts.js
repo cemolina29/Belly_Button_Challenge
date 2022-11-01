@@ -1,16 +1,16 @@
-function init() {
-  var selector = d3.select("#selDataset");
-  d3.json("samples.json").then((data) => {
-  console.log(data);
-  var sampleNames = data.names;
-  sampleNames.forEach((sample) => {
-      selector
-      .append("option")
-      .text(sample)
-      .property("value", sample);
-  });
-})}
-init();
+// function init() {
+//   var selector = d3.select("#selDataset");
+//   d3.json("samples.json").then((data) => {
+//   console.log(data);
+//   var sampleNames = data.names;
+//   sampleNames.forEach((sample) => {
+//       selector
+//       .append("option")
+//       .text(sample)
+//       .property("value", sample);
+//   });
+// })}
+// init();
 
 // create the function to get the necessary data
 function getDemoInfo(id) {
@@ -36,32 +36,32 @@ function getDemoInfo(id) {
       });
   }
   // create the function for the change event
-  function optionChanged(id) {
-      // getPlots(id);
-      getDemoInfo(id);
-  }
+  // function optionChanged(id) {
+  //     // getPlots(id);
+  //     getDemoInfo(id);
+  // }
   
   // create the function for the initial data rendering
-  function init() {
-      // select dropdown menu 
-      var dropdown = d3.select("#selDataset");
+  // function init() {
+  //     // select dropdown menu 
+  //     var dropdown = d3.select("#selDataset");
   
-      // read the data 
-      d3.json("samples.json").then((data)=> {
-          console.log(data)
+  //     // read the data 
+  //     d3.json("samples.json").then((data)=> {
+  //         console.log(data)
   
-          // get the id data to the dropdwown menu
-          data.names.forEach(function(name) {
-              dropdown.append("option").text(name).property("value");
-          });
+  //         // get the id data to the dropdwown menu
+  //         data.names.forEach(function(name) {
+  //             dropdown.append("option").text(name).property("value");
+  //         });
   
-          // call the functions to display the data and the plots to the page
-          // getPlots(data.names[0]);
-          getDemoInfo(data.names[0]);
-      });
-  }
+  //         // call the functions to display the data and the plots to the page
+  //         // getPlots(data.names[0]);
+  //         getDemoInfo(data.names[0]);
+  //     });
+  // }
   
-  init();
+  // init();
 
 function init() {
   // Grab a reference to the dropdown select element
@@ -80,17 +80,16 @@ function init() {
 
     // Use the first sample from the list to build the initial plots
     var firstSample = sampleNames[0];
+    getDemoInfo(firstSample);
     buildCharts(firstSample);
     buildMetadata(firstSample);
   });
 }
 
-// Initialize the dashboard
-init();
-
 function optionChanged(newSample) {
   // Fetch new data each time a new sample is selected
   buildMetadata(newSample);
+  getDemoInfo(newSample);
   buildCharts(newSample);
   
 }
@@ -241,3 +240,5 @@ function buildCharts(sample) {
   });
 
 }
+  // Initialize the dashboard
+init();
